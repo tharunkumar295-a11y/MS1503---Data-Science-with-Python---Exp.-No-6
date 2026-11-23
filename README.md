@@ -48,22 +48,21 @@ To load product review text, perform sentiment polarity analysis using the `Text
 #Step 5: Plot sentiment distribution
 
 # Sentiment Analysis on Product Reviews using TextBlob
-
 from textblob import TextBlob
 import matplotlib.pyplot as plt
 
 # Step 1: Create a list of sample product reviews
 reviews = [
-    "This product is amazing and works perfectly.",
-    "I am very happy with the quality and performance.",
-    "Excellent value for money. Highly recommended!",
-    "The product is okay, nothing special.",
-    "It arrived on time and functions as expected.",
-    "Terrible experience. The product stopped working after a day.",
-    "Very poor quality and disappointing performance.",
-    "I hate this product. Waste of money.",
-    "The packaging was average and the product is acceptable.",
-    "Not bad, but there is room for improvement."
+    "The product is amazing and works perfectly! ",
+    "Very disappointed with the battery life.",
+    "Quality is okay but could be improved.",
+    "Absolutely fantastic! Exceeded my expectations.",
+    "Not worth the price at all",
+    "Packaging was good and delivery was on time.",
+    "The screen resolution is poor and camera is bad.",
+    "Loved the design and the features offered.",
+    "Average product, nothing special.",
+    "Excellent performance and great value for money!"
 ]
 
 # Step 2: Initialize counters
@@ -71,13 +70,11 @@ positive = 0
 negative = 0
 neutral = 0
 
-print("SENTIMENT ANALYSIS OF PRODUCT REVIEWS\n")
-
 # Step 3: Analyze sentiment for each review
+print("--- Sentiment Analysis Results ---")
 for review in reviews:
     analysis = TextBlob(review)
     polarity = analysis.sentiment.polarity
-
     if polarity > 0.1:
         sentiment = "Positive"
         positive += 1
@@ -87,39 +84,28 @@ for review in reviews:
     else:
         sentiment = "Neutral"
         neutral += 1
-
-    print("Review :", review)
-    print("Polarity :", round(polarity, 2))
-    print("Sentiment :", sentiment)
-    print("-" * 60)
+    print(f"Review: {review}")
+    print(f"Polarity: {round(polarity, 2)} | Sentiment: {sentiment}\n")
 
 # Step 4: Display summary
-print("\nSUMMARY")
-print("Positive Reviews :", positive)
-print("Negative Reviews :", negative)
-print("Neutral Reviews :", neutral)
+print("--- Summary ---")
+print("Positive Reviews:", positive)
+print("Negative Reviews:", negative)
+print("Neutral Reviews:", neutral)
 
 # Step 5: Plot sentiment distribution
-categories = ["Positive", "Negative", "Neutral"]
-counts = [positive, negative, neutral]
-colors = ["green", "red", "gray"]
-
-plt.figure(figsize=(6, 4))
-plt.bar(categories, counts, color=colors)
-
-plt.title("Sentiment Distribution of Product Reviews")
-plt.xlabel("Sentiment Category")
+labels = ['Positive', 'Negative', 'Neutral']
+values = [positive, negative, neutral]
+plt.bar(labels, values, color=['green', 'red', 'blue'])
+plt.title("Distribution of Product Reviews")
+plt.xlabel("Sentiment Type")
 plt.ylabel("Number of Reviews")
-
 plt.show()
 
 ## Output
 
-<img width="872" height="558" alt="image" src="https://github.com/user-attachments/assets/1801517a-fd7c-4f02-bf78-f2cfdc33ea44" />
-<img width="797" height="267" alt="image" src="https://github.com/user-attachments/assets/488424f3-fc12-4f6d-8aa7-e5be427340d4" />
-<img width="838" height="570" alt="image" src="https://github.com/user-attachments/assets/cb39f8ca-8e88-4f71-9f65-a1fb3f47f3a8" />
-
-
+<img width="1057" height="672" alt="image" src="https://github.com/user-attachments/assets/746c387c-08c6-453f-a73b-f956dcde3365" />
+<img width="1058" height="657" alt="image" src="https://github.com/user-attachments/assets/8acab049-5ad5-4f79-9376-44aba5d0e5bf" />
 
 ## Result
 
