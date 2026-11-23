@@ -47,9 +47,81 @@ To load product review text, perform sentiment polarity analysis using the `Text
 
 #Step 5: Plot sentiment distribution
 
+# Sentiment Analysis on Product Reviews using TextBlob
+
+from textblob import TextBlob
+import matplotlib.pyplot as plt
+
+# Step 1: Create a list of sample product reviews
+reviews = [
+    "This product is amazing and works perfectly.",
+    "I am very happy with the quality and performance.",
+    "Excellent value for money. Highly recommended!",
+    "The product is okay, nothing special.",
+    "It arrived on time and functions as expected.",
+    "Terrible experience. The product stopped working after a day.",
+    "Very poor quality and disappointing performance.",
+    "I hate this product. Waste of money.",
+    "The packaging was average and the product is acceptable.",
+    "Not bad, but there is room for improvement."
+]
+
+# Step 2: Initialize counters
+positive = 0
+negative = 0
+neutral = 0
+
+print("SENTIMENT ANALYSIS OF PRODUCT REVIEWS\n")
+
+# Step 3: Analyze sentiment for each review
+for review in reviews:
+    analysis = TextBlob(review)
+    polarity = analysis.sentiment.polarity
+
+    if polarity > 0.1:
+        sentiment = "Positive"
+        positive += 1
+    elif polarity < -0.1:
+        sentiment = "Negative"
+        negative += 1
+    else:
+        sentiment = "Neutral"
+        neutral += 1
+
+    print("Review :", review)
+    print("Polarity :", round(polarity, 2))
+    print("Sentiment :", sentiment)
+    print("-" * 60)
+
+# Step 4: Display summary
+print("\nSUMMARY")
+print("Positive Reviews :", positive)
+print("Negative Reviews :", negative)
+print("Neutral Reviews :", neutral)
+
+# Step 5: Plot sentiment distribution
+categories = ["Positive", "Negative", "Neutral"]
+counts = [positive, negative, neutral]
+colors = ["green", "red", "gray"]
+
+plt.figure(figsize=(6, 4))
+plt.bar(categories, counts, color=colors)
+
+plt.title("Sentiment Distribution of Product Reviews")
+plt.xlabel("Sentiment Category")
+plt.ylabel("Number of Reviews")
+
+plt.show()
+
 ## Output
+
+<img width="872" height="558" alt="image" src="https://github.com/user-attachments/assets/1801517a-fd7c-4f02-bf78-f2cfdc33ea44" />
+<img width="797" height="267" alt="image" src="https://github.com/user-attachments/assets/488424f3-fc12-4f6d-8aa7-e5be427340d4" />
+<img width="838" height="570" alt="image" src="https://github.com/user-attachments/assets/cb39f8ca-8e88-4f71-9f65-a1fb3f47f3a8" />
+
 
 
 ## Result
+
 The program successfully loads a list of sample product reviews, applies `TextBlob` sentiment polarity scoring to classify each review's emotional tone, prints summary counts, and visualizes the overall distribution with a Matplotlib bar chart.
 
